@@ -1,0 +1,68 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String   @unique
+  phone     String
+  password  String
+  role      Role
+  createdAt DateTime @default(now())
+
+  bookings  Booking[]
+  buses     Bus[]    @relation("UserBuses") // 👈 Added reverse relation
+}
+
+enum Role {
+  USER
+  OWNER
+}
+
+model Bus {
+  id              Int      @id @default(autoincrement())
+  name            String
+  busNumber       String   @unique
+  totalSeats      Int
+  availableSeats  Int
+  routeId         Int
+  driverId        Int
+  ownerId         Int?     // Owner (User)
+  route           Route    @relation(fields: [routeId], references: [id])
+  driver          Driver   @relation(fields: [driverId], references: [id])
+  owner           User?    @relation("UserBuses", fields: [ownerId], references: [id]) // 👈 Matched relation name
+  bookings        Booking[]
+}
+
+model Route {
+  id           Int      @id @default(autoincrement())
+  source       String
+  destination  String
+  date         DateTime
+  buses        Bus[]
+}
+
+model Driver {
+  id        Int     @id @default(autoincrement())
+  name      String
+  licenseNo String
+  buses     Bus[]
+}
+
+model Booking {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  busId     Int
+  seats     Int
+  createdAt DateTime @default(now())
+
+  user      User     @relation(fields: [userId], references: [id])
+  bus       Bus      @relation(fields: [busId], references: [id])
+}
