@@ -31,7 +31,7 @@ const MyBuses = () => {
   return (
     <>
     <Navbar/>
-    <div className="min-h-screen bg-black text-white p-8">
+    <div className="min-h-screen  pt-20 bg-black text-white p-8">
       <h1 className="text-3xl font-bold text-center mb-8">My Added Buses</h1>
 
       {loading ? (

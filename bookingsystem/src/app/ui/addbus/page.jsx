@@ -2,7 +2,10 @@
 import React, { useState } from "react";
 import Navbar from "../navbar/page";
 
+
+
 const AddBus = () => {
+  const value=localStorage.getItem("userId");
   const [busData, setBusData] = useState({
     name: "",
     busNumber: "",
@@ -13,6 +16,7 @@ const AddBus = () => {
     date: "",
     driverName: "",
     licenseNo: "",
+    ownerid:value,
   });
 
   const [message, setMessage] = useState("");
@@ -58,7 +62,7 @@ const AddBus = () => {
   return (
     <>
     <Navbar/>
-    <div className="min-h-screen bg-black flex justify-center items-center text-white">
+    <div className="min-h-screen  pt-20  bg-black flex justify-center items-center text-white">
       <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl shadow-xl p-8 my-10 w-[450px]">
         <h1 className="text-xl font-bold text-center mb-6">Add Bus Details</h1>
 

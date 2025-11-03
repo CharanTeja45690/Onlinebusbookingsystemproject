@@ -23,7 +23,7 @@ export async function POST(req) {
         route: {
           source: {
             equals: source,
-            mode: "insensitive", // case-insensitive match
+            mode: "insensitive", 
           },
           destination: {
             equals: destination,

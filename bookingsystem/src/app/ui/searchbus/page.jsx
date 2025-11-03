@@ -50,7 +50,7 @@ const SearchBus = () => {
   return (
     <>
     <Navbar/>
-    <div className="min-h-screen bg-black flex flex-col items-center py-10 text-white">
+    <div className="min-h-screen  pt-20 bg-black flex flex-col items-center py-10 text-white">
       <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl shadow-xl p-8 w-[450px]">
         <h1 className="text-2xl font-bold text-center mb-6">Search Available Buses</h1>
 

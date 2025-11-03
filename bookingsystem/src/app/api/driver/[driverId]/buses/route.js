@@ -16,10 +16,10 @@ export async function GET(req, { params }) {
     // Fetch all buses belonging to this driver
     const buses = await prisma.bus.findMany({
       where: {
-        driverId: Number(driverId),
+        ownerId: Number(driverId),
       },
       include: {
-        route: true, // include route details (source, destination, date)
+        route: true, 
       },
       orderBy: {
         id: "desc",

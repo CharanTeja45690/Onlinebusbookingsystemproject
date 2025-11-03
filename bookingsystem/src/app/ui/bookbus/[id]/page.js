@@ -48,7 +48,7 @@ const BookBus = () => {
         // ✅ Send email using EmailJS
         await emailjs.send(
           "service_zjk2uoq",
-          "template_zbozddo",
+          "template_x3fhe5y",
           {
             user_name: data.userName,
             user_email: data.userEmail,
@@ -62,21 +62,21 @@ const BookBus = () => {
           "gYNsilMKXgq1asd1p"
         );
 
-        await emailjs.send(
-          "service_zjk2uoq",
-          "template_48tn6x9",
-          {
-            user_name: data.userName,
-            user_email: data.userEmail,
-            driver_name: data.driverName,
-            driver_email: data.driverEmail,
-            bus_name: data.busName,
-            route: `${data.route.source} ➜ ${data.route.destination}`,
-            seats: seats,
-            date: new Date(data.route.date).toLocaleDateString(),
-          },
-          "gYNsilMKXgq1asd1p"
-        );
+        // await emailjs.send(
+        //   "service_zjk2uoq",
+        //   "template_gzu8eq9",
+        //   {
+        //     user_name: data.userName,
+        //     user_email: data.userEmail,
+        //     driver_name: data.driverName,
+        //     driver_email: data.driverEmail,
+        //     bus_name: data.busName,
+        //     route: `${data.route.source} ➜ ${data.route.destination}`,
+        //     seats: seats,
+        //     date: new Date(data.route.date).toLocaleDateString(),
+        //   },
+        //   "gYNsilMKXgq1asd1p"
+        // );
         setMessage("✅ Booking confirmed and emails sent!");
       } else {
         setMessage(data.message || "❌ Booking failed.");
@@ -96,7 +96,7 @@ const BookBus = () => {
   return (
     <>
     <Navbar/>
-    <div className="min-h-screen bg-black flex justify-center items-center text-white">
+    <div className="min-h-screen  pt-20  bg-black flex justify-center items-center text-white">
       <div className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-2xl shadow-2xl p-8 w-[420px]">
         <h1 className="text-2xl font-bold mb-4 text-center">Book Your Bus</h1>
 

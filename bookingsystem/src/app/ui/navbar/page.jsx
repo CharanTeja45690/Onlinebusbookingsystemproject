@@ -19,6 +19,12 @@ const Navbar = () => {
           >
             Home
           </Link>
+          <Link
+            href="/ui/bookings"
+            className="text-white text-lg font-medium hover:text-blue-400 transition-colors duration-300"
+          >
+            Admin
+          </Link>
         </div>
       </div>
     </nav>

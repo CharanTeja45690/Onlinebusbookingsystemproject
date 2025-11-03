@@ -61,7 +61,7 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-black  text-white">
+    <div className="flex flex-col items-center pt-20 justify-center min-h-screen bg-black  text-white">
       <div className="bg-white/10 backdrop-blur-md border border-white/20 p-8 rounded-4xl shadow-lg w-[70vw] h-[90vh] text-center">
         <h1 className="text-2xl font-bold mb-4 text-blue-500">
           {isRegister ? "Register Account" : "Login"}

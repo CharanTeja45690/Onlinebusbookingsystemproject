@@ -17,6 +17,7 @@ export async function POST(req) {
       date,
       driverName,
       licenseNo,
+      ownerid,
     } = body;
 
     // ✅ Validate fields
@@ -87,6 +88,7 @@ export async function POST(req) {
         availableSeats: parseInt(availableSeats),
         routeId: route.id,
         driverId: driver.id,
+        ownerId: parseInt(ownerid),
       },
       include: {
         route: true,
