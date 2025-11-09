@@ -8,7 +8,6 @@ export async function GET(req) {
     const route = searchParams.get("route");
     const busNumber = searchParams.get("busNumber");
 
-    // 🧩 Build dynamic filter conditions
     const whereClause = {};
 
     if (date) {
@@ -86,6 +85,7 @@ export async function GET(req) {
       driver: b.bus?.driver,
       route: b.bus?.route,
       seats: b.seats,
+      price:b.price,
     }));
 
     return NextResponse.json({ bookings: formattedBookings });

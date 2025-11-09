@@ -17,8 +17,9 @@ model User {
   role      Role
   createdAt DateTime @default(now())
 
-  bookings  Booking[]
-  buses     Bus[]    @relation("UserBuses") // 👈 Added reverse relation
+  bookings Booking[]
+  buses    Bus[]     @relation("UserBuses")
+  payments Payment[]
 }
 
 enum Role {
@@ -32,28 +33,14 @@ model Bus {
   busNumber       String   @unique
   totalSeats      Int
   availableSeats  Int
+  price           Float    @default(0) // Temporary default
   routeId         Int
   driverId        Int
-  ownerId         Int?     // Owner (User)
+  ownerId         Int?
   route           Route    @relation(fields: [routeId], references: [id])
   driver          Driver   @relation(fields: [driverId], references: [id])
-  owner           User?    @relation("UserBuses", fields: [ownerId], references: [id]) // 👈 Matched relation name
-  bookings        Booking[]
-}
-
-model Route {
-  id           Int      @id @default(autoincrement())
-  source       String
-  destination  String
-  date         DateTime
-  buses        Bus[]
-}
-
-model Driver {
-  id        Int     @id @default(autoincrement())
-  name      String
-  licenseNo String
-  buses     Bus[]
+  owner           User?    @relation("UserBuses", fields: [ownerId], references: [id]) 
+  bookings        Booking[] 
 }
 
 model Booking {
@@ -61,8 +48,55 @@ model Booking {
   userId    Int
   busId     Int
   seats     Int
+  price     Float    @default(0) // Temporary default
   createdAt DateTime @default(now())
 
   user      User     @relation(fields: [userId], references: [id])
   bus       Bus      @relation(fields: [busId], references: [id])
+  payment   Payment?
+}
+
+
+model Route {
+  id          Int      @id @default(autoincrement())
+  source      String
+  destination String
+  date        DateTime
+  buses       Bus[]
+}
+
+model Driver {
+  id        Int    @id @default(autoincrement())
+  name      String
+  licenseNo String @unique
+  buses     Bus[]
+}
+model Payment {
+  id            Int           @id @default(autoincrement())
+  bookingId     Int           @unique
+  userId        Int
+  amount        Float
+  paymentMode   PaymentMode
+  paymentStatus PaymentStatus
+  paymentDate   DateTime      @default(now())
+  transactionId String        @unique @default(cuid())
+
+  booking Booking @relation(fields: [bookingId], references: [id], onDelete: Cascade)
+  user    User    @relation(fields: [userId], references: [id])
+}
+
+enum PaymentMode {
+  CREDIT_CARD
+  DEBIT_CARD
+  UPI
+  NET_BANKING
+  WALLET
+  CASH
+}
+
+enum PaymentStatus {
+  PENDING
+  COMPLETED
+  FAILED
+  REFUNDED
 }

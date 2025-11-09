@@ -1,4 +1,3 @@
-// app/api/driver/[driverId]/buses/route.js
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 
@@ -14,9 +13,9 @@ export async function GET(req, { params }) {
     }
 
     // Fetch all buses belonging to this driver
-    const buses = await prisma.bus.findMany({
+    const buses = await prisma.Bus.findMany({
       where: {
-        ownerId: Number(driverId),
+        ownerId: parseInt(driverId),
       },
       include: {
         route: true, 
@@ -29,7 +28,7 @@ export async function GET(req, { params }) {
     if (!buses || buses.length === 0) {
       return NextResponse.json(
         { message: "No buses found for this driver", buses: [] },
-        { status: 200 }
+        { status: 400 }
       );
     }
 
