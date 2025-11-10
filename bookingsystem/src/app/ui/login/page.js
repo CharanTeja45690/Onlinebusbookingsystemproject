@@ -75,7 +75,7 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="relative flex items-center mt-8 justify-center min-h-screen bg-black overflow-hidden">
+    <div className="relative flex items-center pt-24 pb-8 justify-center min-h-screen bg-black overflow-hidden">
       {/* Animated Background Grid */}
       <div className="absolute inset-0 opacity-20">
         <div className="absolute inset-0" style={{
@@ -106,7 +106,7 @@ const LoginPage = () => {
       ></div>
 
       {/* Main Card */}
-      <div className="relative z-10 w-full max-w-md mx-4">
+      <div className="relative z-10 w-full my-auto max-w-md mx-4">
         <div className="relative bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl shadow-2xl p-8 transition-all duration-500 hover:border-white/20">
           
           {/* Animated Border Effect */}

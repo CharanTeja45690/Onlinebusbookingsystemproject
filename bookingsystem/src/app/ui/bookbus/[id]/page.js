@@ -141,32 +141,32 @@ const BookBus = () => {
         setBookingSuccess(true);
 
         // Send email
-        try {
-          await emailjs.send(
-            "service_zjk2uoq",
-            "template_x3fhe5y",
-            {
-              user_name: data?.userName || "Customer",
-              user_email: data?.userEmail || "customer@email.com",
-              driver_name: data?.driverName || bus?.driver?.name,
-              driver_email: data?.driverEmail || "driver@email.com",
-              bus_name: data?.busName || bus?.name,
-              route: `${bus?.route?.source} ➜ ${bus?.route?.destination}`,
-              seats: seats,
-              date: new Date(bus?.route?.date).toLocaleDateString(),
-              payment_method: paymentMethod,
-              transaction_id: data?.transactionId || "N/A",
-              total_amount: totalPrice,
-            },
-            "gYNsilMKXgq1asd1p"
-          );
-        } catch (emailError) {
-          console.error("Email error:", emailError);
-        }
+        // try {
+        //   await emailjs.send(
+        //     "service_zjk2uoq",
+        //     "template_x3fhe5y",
+        //     {
+        //       user_name: data?.userName || "Customer",
+        //       user_email: data?.userEmail || "customer@email.com",
+        //       driver_name: data?.driverName || bus?.driver?.name,
+        //       driver_email: data?.driverEmail || "driver@email.com",
+        //       bus_name: data?.busName || bus?.name,
+        //       route: `${bus?.route?.source} ➜ ${bus?.route?.destination}`,
+        //       seats: seats,
+        //       date: new Date(bus?.route?.date).toLocaleDateString(),
+        //       payment_method: paymentMethod,
+        //       transaction_id: data?.transactionId || "N/A",
+        //       total_amount: totalPrice,
+        //     },
+        //     "gYNsilMKXgq1asd1p"
+        //   );
+        // } catch (emailError) {
+        //   console.error("Email error:", emailError);
+        // }
 
         // Redirect after 2 seconds
         setTimeout(() => {
-          router.push("/ui/mybookings");
+          router.push("/ui/mybooking");
         }, 2000);
       } else {
         setMessage(data.message || "❌ Booking failed.");

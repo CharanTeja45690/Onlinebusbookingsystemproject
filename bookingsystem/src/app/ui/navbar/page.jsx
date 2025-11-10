@@ -73,7 +73,7 @@ const Navbar = () => {
             </Link>
 
             <Link
-              href="/ui/bookings"
+              href="/ui/adminlogin"
               onClick={() => setActiveLink("admin")}
               className="relative px-6 py-2 text-white text-lg font-medium group overflow-hidden rounded-xl border border-white/20 transition-all duration-300 hover:border-white/40"
             >
